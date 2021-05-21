@@ -1,0 +1,69 @@
+main{
+	background-color: #2d2d2d;
+	padding: 30px 0;
+}
+
+.q-grid-container{
+	width: 85%;
+	height: 500px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 2fr repeat(5, 1fr);
+	grid-template-rows: repeat(8, 1fr);
+	gap: 0px 0px;
+	grid-template-areas:
+		". . . . . ."
+		". . . . . ."
+		". . . . . ."
+		". . . . . ."
+		". . . . . ."
+		". . . . . ."
+		". . . . . .";
+}
+
+.q-grid-container div{
+	border: 2px #378ad3 solid;
+}
+.q-grid-container div p{
+	color: #eeeeef;
+	font-family: monospace;
+	font-size: 15px;
+	text-align: center;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.q-grid-container div input{
+	margin: 0;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+#description-div{
+	width: 85%;
+	padding: 30px 0;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+#description-div label{
+	color: #eeeeef;
+	font-family: monospace;
+	font-size: 15px;
+}
+#description-div textarea{
+	width: 100%;
+	height: 100px;
+	background-color: #eeeeef;
+	border: 3px #378ad3 solid;
+}
+
+main form #submit-btn{
+	width: 100px;
+	height: 50px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
