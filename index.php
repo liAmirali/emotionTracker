@@ -4,7 +4,7 @@
 	<title>Emotion Tracker</title>
 	<link rel="stylesheet" type="text/css" href="css/nav.css">
 	<link rel="stylesheet" type="text/css" href="css/questionnaire.css">
-	<link rel="stylesheet" type="text/css" href="config/qtable-config.css">
+	<link rel="stylesheet" type="text/css" href="config/qtable-conf.css">
 	<script type="text/javascript" src="lib/jquery-3.6.0.slim.min.js"></script>
 </head>
 <body>
@@ -12,11 +12,13 @@
 		<div id="menu-toggle">MENU HERE</div>
 		<div id="date-div">
 			<?php
-				$today = getdate()["mday"] ."/". getdate()["mon"] ."/". getdate()["year"];
+				include('config/time-conf.php');
+				$today = getdate()["year"] ."/". getdate()["mon"] ."/". getdate()["mday"];
+				$time_now = localtime(time(),true)['tm_hour'] .':'. localtime(time(),true)['tm_min'];
 			?>
 			<form action="#">
-				<lable for="date-input">date:</lable>
-				<input type="text" id="date-input" name="date" value="<?= $today ?>">
+				<lable for="date-input">date/time:</lable>
+				<input type="text" id="date-input" name="date" value="<?php echo $today ." ". $time_now; ?>">
 			</form>
 		</div>
 	</nav>
@@ -24,7 +26,7 @@
 		<form action="#" method="POST">
 			<div id="qtables" class="q-grid-container">
 				<?php
-					$table_config = include('config/qtable-config.php');
+					$table_config = include('config/qtable-conf.php');
 					$num = 0;
 					for ($i = 0; $i < $table_config['table_count']; $i++) {
 						echo '<div class="qtable" id="qtable-'.$i.'">';
@@ -63,10 +65,27 @@
 			</div>
 			<input id="submit-btn" type="submit" name="submit" value="Submit">
 		</form>
-		<?php
-			if ($_POST['submit'] == 'Submit') {
-				print_r($_POST);
-			}
+		<?php			
+			$time_now = localtime(time(),true)['tm_hour'] .':'. localtime(time(),true)['tm_min'] .':'. localtime(time(),true)['tm_sec'];
+			// if ($_POST['submit'] == 'Submit') {
+				$qtable_0 = "";
+				$qtable_1 = "";
+				$index = 0;
+				foreach ($_POST as $key => $value) {
+					if ($index < count($table_config['table_0']) - 1) {
+						$qtable_0 .= $value;
+					}
+					elseif ($index < count($table_config['table_0']) + count($table_config['table_1']) - 2) {
+						$qtable_1 .= $value;
+					}
+					$index++;
+				}
+				// print_r($_POST);
+				$new_entry = $today.','.$time_now.','.$qtable_0.','.$qtable_1.','.$_POST['description'].';'."\n";
+				$entry_file = fopen("csv/entry.csv", "a") or die("Unable to open file!");;
+				fwrite($entry_file, $new_entry);
+				fclose($entry_file);
+			// }
 		?>
 	</main>
 </body>
