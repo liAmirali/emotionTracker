@@ -2,11 +2,14 @@ main{
 	background-color: #2d2d2d;
 	padding: 30px 0;
 }
-
 .q-grid-container{
+	/*padding: 30px 0;*/
+}
+.q-grid-container .qtable{
 	width: 85%;
 	height: 500px;
-	margin: 0 auto;
+	margin: 30px auto;
+
 	display: grid;
 	grid-template-columns: 2fr repeat(5, 1fr);
 	grid-template-rows: repeat(8, 1fr);
@@ -21,10 +24,10 @@ main{
 		". . . . . .";
 }
 
-.q-grid-container div{
+.q-grid-container .qtable .qtable-item{
 	border: 2px #378ad3 solid;
 }
-.q-grid-container div p{
+.q-grid-container .qtable .qtable-item p{
 	color: #eeeeef;
 	font-family: monospace;
 	font-size: 15px;
@@ -33,7 +36,6 @@ main{
 	top: 50%;
 	transform: translateY(-50%);
 }
-
 .q-grid-container div input{
 	margin: 0;
 	position: relative;
@@ -41,9 +43,11 @@ main{
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+
+
 #description-div{
 	width: 85%;
-	padding: 30px 0;
+	/*padding: 30px 0;*/
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
