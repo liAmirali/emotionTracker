@@ -27,6 +27,9 @@ main{
 .q-grid-container .qtable .qtable-item{
 	border: 2px #378ad3 solid;
 }
+.q-grid-container .qtable .qtable-item input[type="range"] {
+	width: 80%;
+}
 .q-grid-container .qtable .qtable-item p{
 	color: #eeeeef;
 	font-family: monospace;
