@@ -13,6 +13,7 @@
 		<div id="date-div">
 			<?php
 				include('config/time-conf.php');
+
 				$today = getdate()["year"] ."/". getdate()["mon"] ."/". getdate()["mday"];
 				$time_now = localtime(time(),true)['tm_hour'] .':'. localtime(time(),true)['tm_min'];
 			?>
@@ -23,7 +24,7 @@
 		</div>
 	</nav>
 	<main>
-		<form action="#" method="POST">
+		<form action="pages/entrysuccess.php" method="POST">
 			<div id="qtables" class="q-grid-container">
 				<?php
 					$table_config = include('config/qtable-conf.php');
@@ -61,13 +62,13 @@
 			</div>
 			<div id="description-div">
 				<label>Any additional description?</label>
-				<textarea name="description"></textarea>
+				<textarea maxlength="300" name="description"></textarea>
 			</div>
 			<input id="submit-btn" type="submit" name="submit" value="Submit">
 		</form>
 		<?php			
 			$time_now = localtime(time(),true)['tm_hour'] .':'. localtime(time(),true)['tm_min'] .':'. localtime(time(),true)['tm_sec'];
-			// if ($_POST['submit'] == 'Submit') {
+			if ($_POST['submit'] == 'Submit') {
 				$qtable_0 = "";
 				$qtable_1 = "";
 				$index = 0;
@@ -80,12 +81,9 @@
 					}
 					$index++;
 				}
-				// print_r($_POST);
-				$new_entry = $today.','.$time_now.','.$qtable_0.','.$qtable_1.','.$_POST['description'].';'."\n";
-				$entry_file = fopen("csv/entry.csv", "a") or die("Unable to open file!");;
-				fwrite($entry_file, $new_entry);
-				fclose($entry_file);
-			// }
+				print_r($_POST);
+				$new_entry = $today.','.$time_now.','.$qtable_0.','.$qtable_1.','.$_POST['description'].';'."\n";}
+				print $new_entry;
 		?>
 	</main>
 </body>
