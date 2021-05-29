@@ -1,0 +1,7 @@
+1. Track the history (edits, adds, deletes, ...)
+2. add day streak counter
+3. add a different page for charts
+4. take a look at php form validation and security
+5. add a reset button with type="reset"
+6. put the grid fraction settings in a config file
+7. what a mess! fucked up the automatic table generation
