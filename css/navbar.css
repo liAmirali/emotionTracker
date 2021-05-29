@@ -1,0 +1,30 @@
+#navbar-main{
+	height: 70px;
+	background: #393939;
+}
+
+#navbar-main ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	height: 100%;
+	display: inline-block;
+}
+
+#navbar-main ul li{
+	display: inline-block;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	padding: 10px 20px;
+	border-right: 2px solid #378ad3;
+}
+
+#navbar-main ul li:last-child{
+	border-right: none;
+}
+
+#navbar-main ul li a{
+	color: whitesmoke;
+}
