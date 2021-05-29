@@ -1,6 +1,6 @@
 <?php
 	$servername = "localhost";
-	$username = "amirali";
-	$password = "Amirali_@1234!";
+	$username = "USERNAME_HERE";
+	$password = "PASSWORD_HERE";
 	$dbname = "emotiontracker";
 ?>
