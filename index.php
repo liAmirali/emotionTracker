@@ -2,27 +2,21 @@
 <html>
 <head>
 	<title>Emotion Tracker</title>
-	<link rel="stylesheet" type="text/css" href="css/nav.css">
+	
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap-4.6.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/navbar.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
 	<link rel="stylesheet" type="text/css" href="css/questionnaire.css">
 	<link rel="stylesheet" type="text/css" href="config/qtable-conf.css">
-	<script type="text/javascript" src="lib/jquery-3.6.0.slim.min.js"></script>
 </head>
 <body>
-	<nav>
-		<div id="menu-toggle">MENU HERE</div>
-		<div id="date-div">
-			<?php
-				include('config/time-conf.php');
+	<?php
+		include("config/cnf.php");
 
-				$today = getdate()["year"] ."/". getdate()["mon"] ."/". getdate()["mday"];
-				$time_now = localtime(time(),true)['tm_hour'] .':'. localtime(time(),true)['tm_min'];
-			?>
-			<form action="#">
-				<lable for="date-input">date/time:</lable>
-				<input type="text" id="date-input" name="date" value="<?php echo $today ." ". $time_now; ?>">
-			</form>
-		</div>
-	</nav>
+		// Inserting navbar
+		include("site/navbar.php");
+	?>
 	<main>
 		<form action="pages/entrysuccess.php" method="POST">
 			<div id="qtables" class="q-grid-container">
@@ -39,18 +33,14 @@
 								$name = $i.'-'.$row;
 								if ($cell_content == "[RADIO]") {
 									echo '<input type="radio" class="qtable-radio" name="'.$name.'"  id='.$id.' value="'.$clm.'">';
-								}
-								elseif ($cell_content == '[EMPTY]') {
+								} elseif ($cell_content == '[EMPTY]') {
 									echo "";
-								}
-								elseif ($cell_content == '[RANGE]') {
+								} elseif ($cell_content == '[RANGE]') {
 									echo '<input type="range" min="0" max="4" step="0" class="qtalbe-range" name="'.$name.'"  id='.$id.'>';
-								}
-								elseif (gettype($cell_content) == 'string' && strlen($cell_content) > 0) {
+								} elseif (gettype($cell_content) == 'string' && strlen($cell_content) > 0) {
 									// it has to be a the name of the row
 									echo '<p>'.$table_config['table_'.$i][$row][$clm].'</p>';
-								}
-								else {
+								} else {
 									echo "Undefined item type";
 								}
 								echo '</div>';
@@ -75,8 +65,7 @@
 				foreach ($_POST as $key => $value) {
 					if ($index < count($table_config['table_0']) - 1) {
 						$qtable_0 .= $value;
-					}
-					elseif ($index < count($table_config['table_0']) + count($table_config['table_1']) - 2) {
+					} elseif ($index < count($table_config['table_0']) + count($table_config['table_1']) - 2) {
 						$qtable_1 .= $value;
 					}
 					$index++;
@@ -87,5 +76,4 @@
 		?>
 	</main>
 </body>
-	<script type="text/javascript" src="js/style.js"></script>
 </html>
